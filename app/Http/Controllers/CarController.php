@@ -2,84 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\IndexCarRequest;
+use App\Http\Requests\StoreCarRequest;
+use App\Http\Requests\UpdateCarRequest;
 use App\Models\Car;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(IndexCarRequest $request): Collection
     {
-        //
+        $payload = $request->validated();
+
+        return Car::when(isset($payload['type']), static function ($query) use ($payload) {
+            $query->where('type', $payload['type']);
+        })->get();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function store(StoreCarRequest $request): Car
     {
-        //
+        $payload = $request->validated();
+
+        $image = $request->file('image');
+        if ($image) {
+            $payload['image'] = $image->storeAs('image', uniqid().'.png');
+        }
+
+        return Car::create($payload);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function show(Car $car): Car
     {
-        //
+        return $car;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Car $car)
+    public function update(UpdateCarRequest $request, Car $car): Car
     {
-        //
+        $payload = $request->validated();
+
+        $image = $request->file('image');
+        if ($image) {
+            $payload['image'] = $image->storeAs('image', uniqid().'.png');
+
+            if (Storage::exists($car->image)) {
+                Storage::delete($car->image);
+            }
+        }
+
+        $car->update($payload);
+
+        return $car->refresh();
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Car $car)
+    public function destroy(Car $car): void
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Car $car)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Car  $car
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Car $car)
-    {
-        //
+        $car->delete();
     }
 }

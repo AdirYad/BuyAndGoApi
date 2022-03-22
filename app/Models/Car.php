@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * App\Models\Car
@@ -32,4 +34,32 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'manufacturer',
+        'model',
+        'type',
+        'monthly_payment',
+        'image',
+    ];
+
+    const TYPES = [
+        'new_vehicle',
+        'new_luxury',
+        'new_jeep',
+        'vehicle',
+        'luxury',
+        'jeep',
+    ];
+
+    protected $appends = [
+        'image_url',
+    ];
+
+    public function imageUrl(): Attribute
+    {
+        return new Attribute(
+            get: fn ($value, $attributes) => Storage::url($attributes['image']),
+        );
+    }
 }
