@@ -23,6 +23,12 @@ class StoreCarRequest extends FormRequest
                 'min:2',
                 'max:255',
             ],
+            'year' => [
+                'nullable',
+                'integer',
+                'min:1950',
+                'max:' . date('Y'),
+            ],
             'type' => [
                 'required',
                 'string',
