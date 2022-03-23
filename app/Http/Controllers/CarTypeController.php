@@ -6,7 +6,7 @@ use App\Models\Car;
 
 class CarTypeController extends Controller
 {
-    function __invoke(): array
+    public function __invoke(): array
     {
         return Car::TYPES;
     }

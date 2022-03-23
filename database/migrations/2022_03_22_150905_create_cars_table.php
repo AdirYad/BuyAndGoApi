@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('manufacturer')->index();
             $table->string('model')->index();
+            $table->integer('year')->index();
             $table->string('type')->index();
             $table->unsignedInteger('monthly_payment')->index();
             $table->string('image');

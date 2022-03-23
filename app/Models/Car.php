@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
  * @property int $id
  * @property string $manufacturer
  * @property string $model
+ * @property int $year
  * @property string $type
  * @property int $monthly_payment
  * @property string $image
@@ -29,6 +30,7 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereMonthlyPayment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereYear($value)
  * @mixin \Eloquent
  */
 class Car extends Model
@@ -38,6 +40,7 @@ class Car extends Model
     protected $fillable = [
         'manufacturer',
         'model',
+        'year',
         'type',
         'monthly_payment',
         'image',
@@ -59,7 +62,7 @@ class Car extends Model
     public function imageUrl(): Attribute
     {
         return new Attribute(
-            get: fn ($value, $attributes) => Storage::url($attributes['image']),
+            get: fn ($value, $attributes) => isset($attributes['image']) ? Storage::url($attributes['image']) : null,
         );
     }
 }

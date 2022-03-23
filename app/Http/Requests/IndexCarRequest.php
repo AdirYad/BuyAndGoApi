@@ -11,10 +11,40 @@ class IndexCarRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'manufacturer' => [
+                'nullable',
+                'string',
+                'min:2',
+                'max:255',
+            ],
+            'model' => [
+                'nullable',
+                'string',
+                'min:2',
+                'max:255',
+            ],
+            'year' => [
+                'nullable',
+                'integer',
+                'min:1950',
+                'max:' . date('Y'),
+            ],
             'type' => [
                 'nullable',
                 'string',
                 Rule::in(Car::TYPES),
+            ],
+            'min_monthly_payment' => [
+                'nullable',
+                'integer',
+                'min:0',
+                'max:100000',
+            ],
+            'max_monthly_payment' => [
+                'nullable',
+                'integer',
+                'min:0',
+                'max:100000',
             ],
         ];
     }

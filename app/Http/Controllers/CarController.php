@@ -17,6 +17,14 @@ class CarController extends Controller
 
         return Car::when(isset($payload['type']), static function ($query) use ($payload) {
             $query->where('type', $payload['type']);
+        })->when(isset($payload['manufacturer']), static function ($query) use ($payload) {
+            $query->where('manufacturer', $payload['manufacturer']);
+        })->when(isset($payload['model']), static function ($query) use ($payload) {
+            $query->where('model', $payload['model']);
+        })->when(isset($payload['year']), static function ($query) use ($payload) {
+            $query->where('year', $payload['year']);
+        })->when(isset($payload['min_monthly_payment']) && isset($payload['max_monthly_payment']), static function ($query) use ($payload) {
+            $query->whereBetween('monthly_payment', [$payload['min_monthly_payment'], $payload['max_monthly_payment']]);
         })->get();
     }
 
