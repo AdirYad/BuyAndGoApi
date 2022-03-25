@@ -53,7 +53,7 @@ class Car extends Model
         'new_vehicle',
         'new_luxury',
         'new_jeep',
-        'work',
+        'work_vehicle',
         'vehicle',
         'luxury',
         'jeep',
