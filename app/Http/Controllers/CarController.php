@@ -34,7 +34,7 @@ class CarController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $payload['image'] = $image->storeAs('image', uniqid().'.png');
+            $payload['image'] = $image->storeAs('cars', uniqid().'.png');
         }
 
         return Car::create($payload);
@@ -51,7 +51,7 @@ class CarController extends Controller
 
         $image = $request->file('image');
         if ($image) {
-            $payload['image'] = $image->storeAs('image', uniqid().'.png');
+            $payload['image'] = $image->storeAs('cars', uniqid().'.png');
 
             if (Storage::exists($car->image)) {
                 Storage::delete($car->image);

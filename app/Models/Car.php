@@ -65,7 +65,7 @@ class Car extends Model
     public function imageUrl(): Attribute
     {
         return new Attribute(
-            get: fn ($value, $attributes) => isset($attributes['image']) ? Storage::url($attributes['image']) : null,
+            get: fn ($value, $attributes) => isset($attributes['image']) ? Storage::disk('public')->url($attributes['image']) : null,
         );
     }
 }
