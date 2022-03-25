@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
  * @property string $model
  * @property int $year
  * @property string $type
+ * @property int $discount
  * @property int $monthly_payment
  * @property string $image
  * @property \Illuminate\Support\Carbon|null $created_at
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
  * @method static \Illuminate\Database\Eloquent\Builder|Car newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Car query()
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Car whereDiscount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Car whereManufacturer($value)
@@ -42,6 +44,7 @@ class Car extends Model
         'model',
         'year',
         'type',
+        'discount',
         'monthly_payment',
         'image',
     ];

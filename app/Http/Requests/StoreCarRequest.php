@@ -34,6 +34,12 @@ class StoreCarRequest extends FormRequest
                 'string',
                 Rule::in(Car::TYPES),
             ],
+            'discount' => [
+                'required',
+                'integer',
+                'min:1',
+                'max:100000',
+            ],
             'monthly_payment' => [
                 'required',
                 'integer',

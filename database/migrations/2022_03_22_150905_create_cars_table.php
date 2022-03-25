@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('model')->index();
             $table->integer('year')->index();
             $table->string('type')->index();
+            $table->unsignedInteger('discount');
             $table->unsignedInteger('monthly_payment')->index();
             $table->string('image');
             $table->timestamps();
