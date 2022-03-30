@@ -25,7 +25,7 @@ class CarController extends Controller
             $query->where('year', $payload['year']);
         })->when(isset($payload['min_monthly_payment']) && isset($payload['max_monthly_payment']), static function ($query) use ($payload) {
             $query->whereBetween('monthly_payment', [$payload['min_monthly_payment'], $payload['max_monthly_payment']]);
-        })->get();
+        })->orderByDesc('id')->get();
     }
 
     public function store(StoreCarRequest $request): Car
