@@ -38,7 +38,7 @@ class StoreCarRequest extends FormRequest
                 'required',
                 'integer',
                 'min:0',
-                'max:10000',
+                'max:100000',
             ],
             'monthly_payment' => [
                 'required',
