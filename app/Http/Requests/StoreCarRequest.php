@@ -24,7 +24,7 @@ class StoreCarRequest extends FormRequest
                 'max:255',
             ],
             'year' => [
-                'nullable',
+                'required',
                 'integer',
                 'min:1950',
                 'max:' . date('Y'),
@@ -37,14 +37,14 @@ class StoreCarRequest extends FormRequest
             'discount' => [
                 'required',
                 'integer',
-                'min:1',
-                'max:100000',
+                'min:0',
+                'max:10000',
             ],
             'monthly_payment' => [
                 'required',
                 'integer',
                 'min:1',
-                'max:100000',
+                'max:10000',
             ],
             'image' => [
                 'required',
