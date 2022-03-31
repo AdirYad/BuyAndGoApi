@@ -20,7 +20,7 @@ class IndexCarRequest extends FormRequest
             'model' => [
                 'nullable',
                 'string',
-                'min:2',
+                'min:1',
                 'max:255',
             ],
             'year' => [

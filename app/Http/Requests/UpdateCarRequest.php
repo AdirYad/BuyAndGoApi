@@ -21,7 +21,7 @@ class UpdateCarRequest extends FormRequest
             'model' => [
                 'required',
                 'string',
-                'min:2',
+                'min:1',
                 'max:255',
             ],
             'year' => [
