@@ -23,8 +23,10 @@ class CarController extends Controller
             $query->where('model', $payload['model']);
         })->when(isset($payload['year']), static function ($query) use ($payload) {
             $query->where('year', $payload['year']);
-        })->when(isset($payload['min_monthly_payment']) && isset($payload['max_monthly_payment']), static function ($query) use ($payload) {
-            $query->whereBetween('monthly_payment', [$payload['min_monthly_payment'], $payload['max_monthly_payment']]);
+        })->when(isset($payload['min_monthly_payment']), static function ($query) use ($payload) {
+            $query->where('monthly_payment', '>=', $payload['min_monthly_payment']);
+        })->when(isset($payload['max_monthly_payment']), static function ($query) use ($payload) {
+            $query->where('monthly_payment', '<=', $payload['max_monthly_payment']);
         })->orderByDesc('id')->get();
     }
 
@@ -65,6 +67,10 @@ class CarController extends Controller
 
     public function destroy(Car $car): void
     {
+        if (Storage::exists($car->image)) {
+            Storage::delete($car->image);
+        }
+
         $car->delete();
     }
 }

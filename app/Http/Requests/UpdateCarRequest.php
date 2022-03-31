@@ -53,4 +53,16 @@ class UpdateCarRequest extends FormRequest
             ]
         ];
     }
+
+    public function attributes(): array
+    {
+        return [
+            'manufacturer' => 'יצרן',
+            'model' => 'דגם',
+            'year' => 'שנה',
+            'type' => 'סוג',
+            'discount' => 'הנחה',
+            'monthly_payment' => 'החזר חודשי',
+        ];
+    }
 }

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Facade;
 
 return [
 
+    'admin_auth' => env('ADMIN_AUTH'),
+    'admin_mail' => env('ADMIN_MAIL'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -82,7 +85,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'he',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,7 +180,9 @@ return [
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
+        App\Providers\HorizonServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
 
     ],
 

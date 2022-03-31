@@ -38,14 +38,26 @@ class IndexCarRequest extends FormRequest
                 'nullable',
                 'integer',
                 'min:0',
-                'max:100000',
+                'max:10000',
             ],
             'max_monthly_payment' => [
                 'nullable',
                 'integer',
                 'min:0',
-                'max:100000',
+                'max:10000',
             ],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'manufacturer' => 'יצרן',
+            'model' => 'דגם',
+            'year' => 'שנה',
+            'type' => 'סוג',
+            'discount' => 'הנחה',
+            'monthly_payment' => 'החזר חודשי',
         ];
     }
 }

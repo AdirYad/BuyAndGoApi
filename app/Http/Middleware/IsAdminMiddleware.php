@@ -9,7 +9,7 @@ class IsAdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        abort_if($request->header('Authorization') !== config('auth.admin_auth'), 403);
+        abort_if($request->header('Authorization') !== config('app.admin_auth'), 403);
 
         return $next($request);
     }

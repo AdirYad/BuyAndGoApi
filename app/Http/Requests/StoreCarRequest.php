@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Car;
+use App\Rules\ImageOrPath;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -48,8 +49,20 @@ class StoreCarRequest extends FormRequest
             ],
             'image' => [
                 'required',
-                'image',
+                new ImageOrPath,
             ]
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'manufacturer' => 'יצרן',
+            'model' => 'דגם',
+            'year' => 'שנה',
+            'type' => 'סוג',
+            'discount' => 'הנחה',
+            'monthly_payment' => 'החזר חודשי',
         ];
     }
 }
