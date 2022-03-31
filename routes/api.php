@@ -22,4 +22,4 @@ Route::group(['prefix' => 'cars'], static function () {
     Route::get('{car}', [CarController::class, 'show']);
 });
 
-Route::get('contact', [ContactController::class, 'store']);
+Route::post('contact', [ContactController::class, 'store']);
