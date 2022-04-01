@@ -85,7 +85,7 @@ return [
         'array'   => 'השדה :attribute לא יכול להכיל יותר מ-:max פריטים.',
         'file'    => 'השדה :attribute לא יכול להיות גדול מ-:max קילובייטים.',
         'numeric' => 'השדה :attribute אינו יכול להיות גדול מ-:max.',
-        'string'  => 'השדה :attribute לא יכול להיות גדול מ-:max characters.',
+        'string'  => 'השדה :attribute לא יכול להיות גדול מ-:max תווים.',
     ],
     'mimes'                => 'השדה :attribute צריך להיות קובץ מסוג: :values.',
     'mimetypes'            => 'השדה :attribute צריך להיות קובץ מסוג: :values.',
