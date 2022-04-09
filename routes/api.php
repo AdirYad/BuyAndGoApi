@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\CarCountController;
 use App\Http\Controllers\CarTypeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FilterCarController;
@@ -18,6 +19,7 @@ Route::group(['prefix' => 'cars'], static function () {
 
     Route::get('', [CarController::class, 'index']);
     Route::get('/types', CarTypeController::class);
+    Route::get('/count', CarCountController::class);
     Route::get('/filters', FilterCarController::class);
     Route::get('{car}', [CarController::class, 'show']);
 });
